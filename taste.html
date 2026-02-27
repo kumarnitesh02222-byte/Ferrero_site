@@ -2,21 +2,40 @@
 <html>
 <head>
 <title>Better Taste 😌</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body{
+margin:0;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 height:100vh;
-background:#ffeef4;
+background:linear-gradient(-45deg,#ffeef4,#ffd6e0,#fbc2eb);
+background-size:400% 400%;
+animation:bgMove 10s infinite alternate;
 font-family:sans-serif;
 text-align:center;
+overflow:hidden;
 }
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+100%{background-position:100% 50%;}
+}
+
 svg{
 width:150px;
 margin-bottom:20px;
+animation:glow 2s infinite alternate;
 }
+
+@keyframes glow{
+from{filter:drop-shadow(0 0 5px pink);}
+to{filter:drop-shadow(0 0 20px hotpink);}
+}
+
 button{
 padding:10px 20px;
 border:none;
@@ -24,10 +43,27 @@ border-radius:20px;
 background:#a18cd1;
 color:white;
 cursor:pointer;
+margin-top:20px;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0);}
+100%{transform:translateY(-110vh);}
 }
 </style>
 </head>
+
 <body>
+
+<!-- SOUND -->
+<audio id="sparkleSound" autoplay>
+<source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_sparkle.mp3" type="audio/mpeg">
+</audio>
 
 <svg viewBox="0 0 200 200">
 <circle cx="100" cy="110" r="50" fill="#fff" stroke="#333" stroke-width="4"/>
@@ -43,6 +79,21 @@ cursor:pointer;
 <h2>I knew you had better taste 😌✨🐻</h2>
 
 <button onclick="location.href='index.html'">Go Back</button>
+
+<script>
+function createSparkle(){
+let star=document.createElement("div");
+star.innerHTML="✨";
+star.style.position="absolute";
+star.style.left=Math.random()*100+"vw";
+star.style.top="100vh";
+star.style.fontSize="18px";
+star.style.animation="floatUp 5s linear";
+document.body.appendChild(star);
+setTimeout(()=>star.remove(),5000);
+}
+setInterval(createSparkle,1500);
+</script>
 
 </body>
 </html>
