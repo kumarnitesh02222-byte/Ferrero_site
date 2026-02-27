@@ -1,23 +1,38 @@
+
 <!DOCTYPE html>
 <html>
 <head>
 <title>Chocolate 🍫</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <style>
 body{
 display:flex;
 justify-content:center;
 align-items:center;
 height:100vh;
-background:linear-gradient(135deg,#ffd6e0,#fff1f7);
+background:linear-gradient(-45deg,#ffd6e0,#fff1f7,#ffe3ec);
+background-size:400% 400%;
+animation:bgMove 10s infinite alternate;
 font-family:sans-serif;
+overflow:hidden;
 }
+
+@keyframes bgMove{
+0%{background-position:0% 50%;}
+100%{background-position:100% 50%;}
+}
+
 .card{
 background:white;
 padding:40px;
 border-radius:20px;
 text-align:center;
 box-shadow:0 10px 30px rgba(0,0,0,0.1);
+position:relative;
+transition:0.3s;
 }
+
 button{
 padding:10px 15px;
 margin:10px;
@@ -25,18 +40,45 @@ border:none;
 border-radius:20px;
 cursor:pointer;
 font-weight:bold;
+transition:0.3s;
 }
-.no{background:#a1c4fd;color:white;}
-.secret{background:#ffd3b6;}
-.yes{background:#ff6f91;color:white;}
+
+.no{
+background:#a1c4fd;
+color:white;
+position:relative;
+}
+
+.secret{
+background:#ffd3b6;
+}
+
+.yes{
+background:#ff6f91;
+color:white;
+}
+
+button:hover{
+transform:scale(1.1);
+}
+
+/* little shake animation */
+@keyframes shake{
+0%{transform:translateX(0);}
+25%{transform:translateX(-5px);}
+50%{transform:translateX(5px);}
+75%{transform:translateX(-5px);}
+100%{transform:translateX(0);}
+}
 </style>
 </head>
+
 <body>
 
 <div class="card">
 <h2>Do you like the chocolate? 🍫</h2>
 
-<button class="no">No 😒</button>
+<button class="no" id="noBtn">No 😒</button>
 
 <button class="secret" onclick="location.href='secret.html'">
 No but secretly yes 😳
@@ -46,7 +88,47 @@ No but secretly yes 😳
 YES OBVIOUSLY 😍
 </button>
 
+<p id="msg"></p>
+
 </div>
+
+<script>
+
+let noBtn=document.getElementById("noBtn");
+let msg=document.getElementById("msg");
+
+noBtn.addEventListener("click",function(){
+msg.innerText="Areee sach bolooo 😏🐻";
+noBtn.style.animation="shake 0.5s";
+setTimeout(()=>{noBtn.style.animation="";},500);
+});
+
+/* floating hearts animation */
+function createHeart(){
+let heart=document.createElement("div");
+heart.innerHTML="💖";
+heart.style.position="absolute";
+heart.style.left=Math.random()*100+"vw";
+heart.style.top="100vh";
+heart.style.fontSize="20px";
+heart.style.animation="floatUp 6s linear";
+document.body.appendChild(heart);
+
+setTimeout(()=>heart.remove(),6000);
+}
+
+const style=document.createElement("style");
+style.innerHTML=`
+@keyframes floatUp{
+0%{transform:translateY(0);}
+100%{transform:translateY(-110vh);}
+}
+`;
+document.head.appendChild(style);
+
+setInterval(createHeart,2000);
+
+</script>
 
 </body>
 </html>
