@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Chocolate 🍫</title>
+<style>
+body{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:linear-gradient(135deg,#ffd6e0,#fff1f7);
+font-family:sans-serif;
+}
+.card{
+background:white;
+padding:40px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+button{
+padding:10px 15px;
+margin:10px;
+border:none;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
+}
+.no{background:#a1c4fd;color:white;}
+.secret{background:#ffd3b6;}
+.yes{background:#ff6f91;color:white;}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h2>Do you like the chocolate? 🍫</h2>
+
+<button class="no">No 😒</button>
+
+<button class="secret" onclick="location.href='secret.html'">
+No but secretly yes 😳
+</button>
+
+<button class="yes" onclick="location.href='taste.html'">
+YES OBVIOUSLY 😍
+</button>
+
+</div>
+
+</body>
+</html>
